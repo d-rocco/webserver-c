@@ -4,6 +4,7 @@
 #include <sys/socket.h>
 
 #define PORT 8080
+#define BACKLOG 50
 
 int main() {
     int tcp_socket = socket(AF_INET, SOCK_STREAM, 0);
@@ -25,6 +26,12 @@ int main() {
         return 1;
     }
     printf("Bind was successful\n");
+
+    int listener = listen(tcp_socket, BACKLOG);
+    if (listener == -1) {
+        perror("webserver (listen)");
+    }
+    printf("Socket set as passive\n");
 
     return 0;
 }
