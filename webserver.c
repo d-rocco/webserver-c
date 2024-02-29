@@ -16,8 +16,8 @@ int main() {
 
     struct sockaddr_in host_addr;
     host_addr.sin_family = AF_INET;
-    host_addr.sin_port = PORT;
-    host_addr.sin_addr.s_addr = INADDR_ANY;
+    host_addr.sin_port = htons(PORT);
+    host_addr.sin_addr.s_addr = htonl(INADDR_ANY);
     int host_addrlen = sizeof(host_addr);
 
     int binding = bind(tcp_socket, (const struct sockaddr *)&host_addr, host_addrlen);
